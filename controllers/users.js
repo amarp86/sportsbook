@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 const db = require("../db/connection");
-const nodeMailer = require("../nodemailer/nodemailer");
+
 
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
@@ -34,7 +34,7 @@ const signUp = async(req, res) => {
 
             const token = jwt.sign(payload, TOKEN_KEY);
 
-            nodeMailer.sendEmail(email);
+
 
             res.status(201).json({ token });
         }
